@@ -1,29 +1,22 @@
-import Link from 'next/link';
-import NavLinks from '@/app/ui/dashboard/nav-links';
-import AcmeLogo from '@/app/ui/acme-logo';
-import { PowerIcon } from '@heroicons/react/24/outline';
-
+import Link from "next/link";
 export default function SideNav() {
   return (
-    <div className="flex h-full flex-col px-3 py-4 md:px-2">
-      <Link
-        className="mb-2 flex h-20 items-end justify-start rounded-md bg-blue-600 p-4 md:h-40"
-        href="/"
-      >
-        <div className="w-32 text-white md:w-40">
-          <AcmeLogo />
-        </div>
-      </Link>
-      <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <NavLinks />
-        <div className="hidden h-auto w-full grow rounded-md bg-gray-50 md:block"></div>
-        <form>
-          <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
-            <PowerIcon className="w-6" />
-            <div className="hidden md:block">Sign Out</div>
-          </button>
-        </form>
-      </div>
+    <div className="hidden md:block w-full h-screen  p-4">
+      <div className="text-2xl font-semibold mb-4">a Board</div>
+      <nav className="space-y-2">
+        <Link href="/dashboard" className="flex items-center space-x-2 p-2 text-gray-700 rounded hover:bg-gray-300">
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+          </svg>
+        Home
+        </Link>
+        <Link href={"/our-blog"} className="flex items-center space-x-2 p-2 text-gray-700 rounded hover:bg-gray-300">
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 13H5v-2h14v2z" />
+          </svg>
+          <>Our Blog</>
+        </Link>
+      </nav>
     </div>
   );
 }
