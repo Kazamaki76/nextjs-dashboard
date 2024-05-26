@@ -1,27 +1,11 @@
 'use client'
+import { Post } from '@/app/types/PostType';
+import { useRouter } from 'next/navigation'
 import { useState , useEffect } from 'react';
 
-type Post = {
-  id: number;
-  name: string;
-  authorId: string;
-  title: string;
-  content : string;
-  comments : Comment[];
-  author : {name : string}
-  }
-type Comment = {
-  id : number;
-  content : string;
-}
-
-
-export default  function Page({ params }: { params: { postId: string } }) {
-  
+export default  function Page({ params }: { params: { postId: string } }) {  
   const [loadind, setLoadind] = useState(true)
-
   const [data, setData] = useState<Post>({} as Post)
-  
    useEffect  (   () => {
     async function getData(){
       let  res = await fetch(`http://127.0.0.1:3000/api/post/${params.postId}`);
@@ -35,6 +19,32 @@ export default  function Page({ params }: { params: { postId: string } }) {
     getData()
     
   },[])
+
+  const createComment = async (event) => {
+    event.preventDefault(); 
+    const commentContent = event.target.form[0].value; 
+    try {
+      const response = await fetch('http://localhost:3000/api/comment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ postId: params.postId, content: commentContent })
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create comment');
+      }
+      const newComment = await response.json();
+      setData(prevState => ({
+        ...prevState,
+        comments: [...prevState.comments, newComment]
+      }));
+      event.target.form[0].value = ''; 
+    } catch (error) {
+      console.error('Error creating comment:', error);
+    }
+  };
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -44,7 +54,7 @@ export default  function Page({ params }: { params: { postId: string } }) {
   const toggleComment = () => {
     setOpenComment(!openComment);
   }
-  
+  const router = useRouter()
 
     return <div>
     My Post: {params.postId}
@@ -78,7 +88,7 @@ export default  function Page({ params }: { params: { postId: string } }) {
         {loadind ? 
          <div> Loading</div> :<div key={data.id} className="flex-1 overflow-y-auto p-4">
         <div className="max-w-3xl mx-auto bg-white p-4 rounded shadow mb-4">
-          <button className="text-gray-600" aria-label="Go back">
+          <button onClick={()=> router.push('/dashboard')} className="text-gray-600" aria-label="Go back">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
               <path d="M15 19l-7-7 7-7" />
             </svg>
@@ -98,10 +108,10 @@ export default  function Page({ params }: { params: { postId: string } }) {
           </p>
           { openComment ? <form action="open" placeholder='Add Comments'>
             <input type="text" className="w-full py-10" placeholder="Enter your Comment..." ></input>
-            <button type='submit' aria-label='Submit' className='p-2 bg-green-600 text-white rounded mb-4'> Submit</button>
+            <button onClick={createComment} type='submit' aria-label='Submit' className='p-2 bg-green-600 text-white rounded mb-4' > Submit</button>
             <button onClick={toggleComment} type='reset' aria-label='Submit'className='p-2 bg-red-600 text-white rounded mb-4'> Cancel </button>
           </form> 
-          :<button className="p-2 bg-green-600 text-white rounded mb-4" onClick={toggleComment} >Add Comments</button>
+          :<button className="p-2 bg-green-600 text-white rounded mb-4" onClick={toggleComment}  >Add Comments</button>
           }
 
 
