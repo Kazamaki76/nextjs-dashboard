@@ -23,7 +23,7 @@ export  default function Page() {
       }
       const data = await response.json();
       console.log('Sign in successful:', data);
-      localStorage.setItem('userData', JSON.stringify(data));
+      
       router.push('/dashboard')
       // Further actions after successful sign in, such as redirect or state update
     } catch (error) {
