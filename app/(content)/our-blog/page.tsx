@@ -34,7 +34,6 @@ export default function Page() {
       }
       const data = await response.json();
       console.log('Post created', data);
-       const router = useRouter()
        router.push('/dashboard')
       
       // Further actions after successful sign in, such as redirect or state update
