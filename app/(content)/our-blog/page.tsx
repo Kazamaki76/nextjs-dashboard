@@ -65,7 +65,7 @@ export default function Page() {
     )}
     
     <div className="flex flex-col flex-1">
-      <div className="bg-green-900 text-white p-4 flex justify-between items-center">
+      <div className="bg-green-500 text-white p-4 flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <button className="md:hidden" onClick={toggleSidebar}>
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -87,7 +87,7 @@ export default function Page() {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        create post
+        create +
       </button>
       {showModal ? (
         <>

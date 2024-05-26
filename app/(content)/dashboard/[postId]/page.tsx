@@ -57,10 +57,10 @@ export default  function Page({ params }: { params: { postId: string } }) {
   const router = useRouter()
 
     return <div>
-    My Post: {params.postId}
+  
     <div className="flex flex-col h-screen bg-gray-100">
-      {/* Top Navigation Bar */}
-      <div className="bg-green-900 text-white p-4 flex justify-between items-center">
+
+      <div className="bg-green-500 text-white p-4 flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <button className="md:hidden" onClick={toggleSidebar} aria-label="Toggle sidebar">
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -78,8 +78,7 @@ export default  function Page({ params }: { params: { postId: string } }) {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <button className="p-2 bg-green-700 rounded" aria-label="Create new post">Create +</button>
-          <button className="p-2 bg-green-700 rounded" aria-label="Sign in">Sign In</button>
+          
         </div>
       </div>
 
@@ -94,10 +93,10 @@ export default  function Page({ params }: { params: { postId: string } }) {
             </svg>
           </button>
           <div className="flex items-center space-x-4 my-4">
-            <img src={`https://via.placeholder.com/50`} alt="Avatar" className="w-12 h-12 rounded-full" />
+           
             <div>
                <div  className="font-semibold">{data.author.name}</div>
-              <div className="text-sm text-gray-500">5mo. ago</div>
+              
             </div>
           </div>
           <div className="text-lg text-gray-500 mb-2">History</div>
@@ -117,7 +116,7 @@ export default  function Page({ params }: { params: { postId: string } }) {
 
           {data.comments.map((comment) => (
             <div key={comment.id} className="flex items-start space-x-4 mb-4">
-              <img src={`https://via.placeholder.com/50`} alt="Avatar" className="w-10 h-10 rounded-full" />
+             
               <div>
                 <div className="font-semibold">User Name</div>
                 <div className="text-sm text-gray-500 mb-2">12h ago</div>
@@ -130,13 +129,7 @@ export default  function Page({ params }: { params: { postId: string } }) {
         </div>
       </div>  
         }
-
-    
-    
     </div>
-
-    {/* Dialog */}
-    
   </div>
     
   }

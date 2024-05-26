@@ -23,14 +23,13 @@ export  default function Page() {
       }
       const data = await response.json();
       console.log('Sign in successful:', data);
-      
       router.push('/dashboard')
       // Further actions after successful sign in, such as redirect or state update
     } catch (error) {
       console.error('Error during sign in:', error);
     }}
   
-  return <div className="flex flex-col h-screen bg-green-900 md:flex-row">
+  return <div className="flex flex-col h-screen bg-green-300 md:flex-row">
   <div className="sm:flex md:hidden flex-col justify-center items-center w-full p-8">
     <div className="text-center">
       <img src="/board.png" alt="Board" className="mb-4 w-48 h-auto mx-auto" />
@@ -38,7 +37,7 @@ export  default function Page() {
     </div>
   </div>
 
-  <div className="flex justify-center items-center w-full md:w-1/2 p-8 md:p-0 bg-green-700 rounded-b-3xl md:rounded-b-none md:rounded-l-3xl">
+  <div className="flex justify-center items-center w-full md:w-1/2 p-8 md:p-0 bg-green-500 rounded-b-3xl md:rounded-b-none md:rounded-l-3xl">
     <div className="w-full max-w-xs md:max-w-sm">
       <div className="text-white text-3xl mb-6 text-left">Sign in</div>
       <input
